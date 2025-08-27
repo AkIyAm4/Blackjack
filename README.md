@@ -4,7 +4,7 @@ A python project based on a card game called ***blackjack*** or ***21***.
 
 ## Notes:
 
-The code is not finished yet all because I'm a bit of a perfectionist and want to make the game realistic as much as possible.
+This project's logic might be complete but there are tons of other things that still needs to be improved and added to make the game realistic as much as possible.
 
 ## 🃏 Blackjack Rules
 
