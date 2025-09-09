@@ -37,6 +37,24 @@ def cont():
             print(f"\nScore: You - {p_score}| Dealer - {d_score}")
             sys.exit()
 
+def battle(announce, p, d, winner = None):
+    global p_score, d_score
+
+    print("\nYour hand:")
+    for x in p:
+        print(x, end=" ")
+    print(f"Total: {calculation(p)}")
+    print("\nDealer's hand:")
+    for y in d:
+        print(y, end=" ")
+    print(f"Total: {calculation(d)}")
+    print(announce)
+    if winner == "player":
+        p_score += 1
+    elif winner == "dealer":
+        d_score += 1
+    cont()
+
 def game():
     global p_score, d_score
     player_hand = []
@@ -114,41 +132,12 @@ def game():
     if p_stand and d_stand:
         print("\n===== The battle begins! =====")
         if calculation(player_hand) > calculation(dealer_hand):
-            print("\nYour hand:")
-            for x in player_hand:
-                print(x, end=" ")
-            print(f"Total: {calculation(player_hand)}")
-            print("\nDealer's hand:")
-            for y in dealer_hand:
-                print(y, end=" ")
-            print(f"Total: {calculation(dealer_hand)}")
-            print("\nYou won!")
-            p_score += 1
-            cont()
+            battle("You won!", player_hand, dealer_hand, "player")
 
         elif calculation(player_hand) < calculation(dealer_hand):
-            print("\nYour hand:")
-            for x in player_hand:
-                print(x, end=" ")
-            print(f"Total: {calculation(player_hand)}")
-            print("\nDealer's hand:")
-            for y in dealer_hand:
-                print(y, end=" ")
-            print(f"Total: {calculation(dealer_hand)}")
-            print("The dealer won!")
-            d_score += 1
-            cont()
+            battle("The dealer won!", player_hand, dealer_hand, "dealer")
 
         elif calculation(player_hand) == calculation(dealer_hand):
-            print("\nYour hand:")
-            for x in player_hand:
-                print(x, end=" ")
-            print(f"Total: {calculation(player_hand)}")
-            print("\nDealer's hand:")
-            for y in dealer_hand:
-                print(y, end=" ")
-            print(f"Total: {calculation(dealer_hand)}")
-            print("It's a tie!")
-            cont()
+            battle("It's a tie!", player_hand, dealer_hand)
 
 game()
