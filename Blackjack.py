@@ -4,7 +4,6 @@ import sys
 suits = ["♠", "♥", "♦", "♣"]
 deck = [r + s for s in suits for r in ["A", "K", "Q", "J"] + [str(n) for n in range(10, 1, -1)]]
 random.shuffle(deck)
-print(deck)
 values = {
         "A": 11, "K": 10, "Q": 10, "J": 10,
         "10": 10, "9": 9, "8": 8, "7": 7,
