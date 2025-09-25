@@ -55,7 +55,7 @@ def battle(announce, p, d, winner = None):
     cont()
 
 def game():
-    global p_score, d_score
+global p_score, d_score
     player_hand = []
     dealer_hand = []
 
@@ -79,11 +79,17 @@ def game():
     print(f"\nDealer's hand:")
     print(f"? {dealer_hand[-1]}")
     if calculation(dealer_hand) > 21:
-        print("The dealer busted! You win.")
+        print("\nDealer's Hand:")
+        for y in dealer_hand:
+            print(y, end=" ")
+        print("\nThe dealer busted! You win.")
         p_score += 1
         cont()
     elif calculation(dealer_hand) == 21:
-        print("The dealer got a blackjack! the dealer wins.")
+        print("\nDealer's Hand:")
+        for y in dealer_hand:
+            print(y, end=" ")
+        print("\nThe dealer got a blackjack! the dealer wins.")
         d_score += 1
         cont()
 
