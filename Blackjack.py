@@ -1,14 +1,24 @@
 import random
 import sys
+import time
+import builtins
 
-suits = ["♠", "♥", "♦", "♣"]
-deck = [r + s for s in suits for r in ["A", "K", "Q", "J"] + [str(n) for n in range(10, 1, -1)]]
+def slow_print(*args, sep=" ", end="\n", delay=0.025, flush=True):
+    text = sep.join(map(str, args)) + end
+    for char in text:
+        builtins.print(char, end="", flush=flush)
+        time.sleep(delay)
+
+print = slow_print
+
+deck = [r + s for s in ["♠", "♥", "♦", "♣"] for r in ["A", "K", "Q", "J"] + [str(n) for n in range(10, 1, -1)]]
 random.shuffle(deck)
 values = {
         "A": 11, "K": 10, "Q": 10, "J": 10,
         "10": 10, "9": 9, "8": 8, "7": 7,
         "6": 6, "5": 5, "4": 4, "3": 3, "2": 2
 }
+
 p_score = 0
 d_score = 0
 
@@ -28,10 +38,11 @@ def calculation(n_deck):
 
 def cont():
     while True:
-        print(f"\n{deck}")
         ask = input("\nDo you want to play another game? (y/n) ").lower()
         if ask == "y":
             game()
+            if len(deck) < 5:
+                pass
         elif ask == "n":
             print(f"\nScore: You - {p_score}| Dealer - {d_score}")
             sys.exit()
@@ -55,7 +66,7 @@ def battle(announce, p, d, winner = None):
     cont()
 
 def game():
-global p_score, d_score
+    global p_score, d_score
     player_hand = []
     dealer_hand = []
 
@@ -64,31 +75,17 @@ global p_score, d_score
         dealer_hand.append(deck.pop())
 
     print(f"\nYour hand:")
-    for x in player_hand:
-        print(x, end=" ")
-    print()
+    print(*player_hand[0:])
     print(f"Total: {calculation(player_hand)}")
-    if calculation(player_hand) > 21:
-        print("You busted! The dealer wins.")
-        d_score += 1
-        cont()
-    elif calculation(player_hand) == 21:
-        print("You got a blackjack! You win.")
+    if calculation(player_hand) == 21:
+        print("\nYou got a blackjack! You win.")
         p_score += 1
         cont()
     print(f"\nDealer's hand:")
     print(f"? {dealer_hand[-1]}")
-    if calculation(dealer_hand) > 21:
+    if calculation(dealer_hand) == 21:
         print("\nDealer's Hand:")
-        for y in dealer_hand:
-            print(y, end=" ")
-        print("\nThe dealer busted! You win.")
-        p_score += 1
-        cont()
-    elif calculation(dealer_hand) == 21:
-        print("\nDealer's Hand:")
-        for y in dealer_hand:
-            print(y, end=" ")
+        print("\n", *dealer_hand[0:])
         print("\nThe dealer got a blackjack! the dealer wins.")
         d_score += 1
         cont()
@@ -103,9 +100,7 @@ global p_score, d_score
                 player_hand.append(deck.pop())
                 print("\nYou drew a card.")
                 print("\nYour hand: ")
-                for x in player_hand:
-                    print(x, end=" ")
-                print()
+                print(*player_hand[0:])
                 print(f"Total: {calculation(player_hand)}")
                 if calculation(player_hand) > 21:
                     print("\nYou busted! The dealer wins.")
@@ -122,11 +117,10 @@ global p_score, d_score
                 dealer_hand.append(deck.pop())
                 print("\nThe dealer chose to hit and drew a card.")
                 print(f"\nDealer's hand:")
-                print(f"?", *dealer_hand[1:])
+                print("\n?", *dealer_hand[1:])
                 if calculation(dealer_hand) > 21:
-                    for y in dealer_hand:
-                        print(y, end=" ")
                     print()
+                    print(*dealer_hand[0:])
                     print("The dealer busted! You win.")
                     p_score += 1
                     cont()
@@ -137,12 +131,12 @@ global p_score, d_score
     if p_stand and d_stand:
         print("\n===== The battle begins! =====")
         if calculation(player_hand) > calculation(dealer_hand):
-            battle("You won!", player_hand, dealer_hand, "player")
+            battle("\nYou won!", player_hand, dealer_hand, "player")
 
         elif calculation(player_hand) < calculation(dealer_hand):
-            battle("The dealer won!", player_hand, dealer_hand, "dealer")
+            battle("\nThe dealer won!", player_hand, dealer_hand, "dealer")
 
         elif calculation(player_hand) == calculation(dealer_hand):
-            battle("It's a tie!", player_hand, dealer_hand)
+            battle("\nIt's a tie!", player_hand, dealer_hand)
 
 game()
