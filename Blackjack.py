@@ -42,7 +42,7 @@ def calculation(n_deck):
 def cont():
     global deck
 
-    if len(deck) < 6:
+    if len(deck) < 11:
         print("\nRegenerating the deck, please wait...")
         time.sleep(3)
         deck = deck_regen()
