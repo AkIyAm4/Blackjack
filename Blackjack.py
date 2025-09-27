@@ -80,8 +80,8 @@ def game():
     print(f"\nDealer's hand:")
     print(f"? {dealer_hand[-1]}")
     if calculation(dealer_hand) == 21:
-        print("\nDealer's Hand:")
-        print("\n", *dealer_hand[0:])
+        print("\nDealer's Hand:\n")
+        print(*dealer_hand[0:])
         print("\nThe dealer got a blackjack! the dealer wins.")
         d_score += 1
         cont()
@@ -95,7 +95,7 @@ def game():
             if choice == "hit":
                 player_hand.append(deck.pop())
                 print("\nYou drew a card.")
-                print("\nYour hand: ")
+                print("\nYour hand:")
                 print(*player_hand[0:])
                 print(f"Total: {calculation(player_hand)}")
                 if calculation(player_hand) > 21:
@@ -113,7 +113,7 @@ def game():
                 dealer_hand.append(deck.pop())
                 print("\nThe dealer chose to hit and drew a card.")
                 print(f"\nDealer's hand:")
-                print("\n?", *dealer_hand[1:])
+                print("?", *dealer_hand[1:])
                 if calculation(dealer_hand) > 21:
                     print()
                     print(*dealer_hand[0:])
