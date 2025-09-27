@@ -22,6 +22,9 @@ values = {
 p_score = 0
 d_score = 0
 
+def deck_regen():
+    return [r + s for s in ["♠", "♥", "♦", "♣"] for r in ["A", "K", "Q", "J"] + [str(n) for n in range(10, 1, -1)]]
+
 def calculation(n_deck):
     total = 0
     aces = 0
@@ -37,6 +40,15 @@ def calculation(n_deck):
     return total
 
 def cont():
+    global deck
+
+    if len(deck) < 6:
+        print("\nRegenerating the deck, please wait...")
+        time.sleep(3)
+        deck = deck_regen()
+        random.shuffle(deck)
+        print("\nRegeneration done")
+
     while True:
         ask = input("\nDo you want to play another game? (y/n) ").lower()
         if ask == "y":
