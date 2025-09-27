@@ -41,8 +41,6 @@ def cont():
         ask = input("\nDo you want to play another game? (y/n) ").lower()
         if ask == "y":
             game()
-            if len(deck) < 5:
-                pass
         elif ask == "n":
             print(f"\nScore: You - {p_score}| Dealer - {d_score}")
             sys.exit()
@@ -78,11 +76,11 @@ def game():
         p_score += 1
         cont()
     print(f"\nDealer's hand:")
-    print(f"? {dealer_hand[-1]}")
+    print("?", *dealer_hand[1:])
     if calculation(dealer_hand) == 21:
-        print("\nDealer's Hand:\n")
+        print("\nDealer's Hand:")
         print(*dealer_hand[0:])
-        print("\nThe dealer got a blackjack! the dealer wins.")
+        print("The dealer got a blackjack! the dealer wins.")
         d_score += 1
         cont()
 
