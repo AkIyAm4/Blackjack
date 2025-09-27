@@ -51,13 +51,9 @@ def battle(announce, p, d, winner = None):
     global p_score, d_score
 
     print("\nYour hand:")
-    for x in p:
-        print(x, end=" ")
-    print(f"Total: {calculation(p)}")
+    print(*p[0:], f"Total: {calculation(p)}")
     print("\nDealer's hand:")
-    for y in d:
-        print(y, end=" ")
-    print(f"Total: {calculation(d)}")
+    print(*d[0:], f"Total: {calculation(d)}")
     print(announce)
     if winner == "player":
         p_score += 1
