@@ -22,9 +22,6 @@ values = {
 p_score = 0
 d_score = 0
 
-def deck_regen():
-    return [r + s for s in ["♠", "♥", "♦", "♣"] for r in ["A", "K", "Q", "J"] + [str(n) for n in range(10, 1, -1)]]
-
 def calculation(n_deck):
     total = 0
     aces = 0
@@ -45,7 +42,7 @@ def cont():
     if len(deck) < 11:
         print("\nRegenerating the deck, please wait...")
         time.sleep(3)
-        deck = deck_regen()
+        deck = [r + s for s in ["♠", "♥", "♦", "♣"] for r in ["A", "K", "Q", "J"] + [str(n) for n in range(10, 1, -1)]]
         random.shuffle(deck)
         print("\nRegeneration done")
 
