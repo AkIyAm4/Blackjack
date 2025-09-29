@@ -39,6 +39,8 @@ def calculation(n_deck):
 def cont():
     global deck
 
+    print(f"\nScore: You - {p_score}| Dealer - {d_score}")
+
     if len(deck) < 11:
         print("\nRegenerating the deck, please wait...")
         time.sleep(3)
@@ -51,7 +53,7 @@ def cont():
         if ask == "y":
             game()
         elif ask == "n":
-            print(f"\nScore: You - {p_score}| Dealer - {d_score}")
+            print(f"\nFinal Score: You - {p_score}| Dealer - {d_score}")
             sys.exit()
 
 def battle(announce, p, d, winner = None):
