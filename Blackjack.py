@@ -54,6 +54,12 @@ def cont():
             game()
         elif ask == "n":
             print(f"\nFinal Score: You - {p_score}| Dealer - {d_score}")
+            if p_score > d_score:
+                print("\n===== You won! =====")
+            elif p_score == d_score:
+                print("\n===== It's a tie! =====")
+            elif p_score < d_score:
+                print("\n===== You lost! =====")
             sys.exit()
 
 def battle(announce, p, d, winner = None):
