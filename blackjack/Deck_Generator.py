@@ -6,6 +6,7 @@ def shuffling_choice():
     slow_print("===== Shuffling Methods =====")
     slow_print("1. Random Shuffle")
     slow_print("2. Riffle Shuffle")
+    slow_print("3. Overhand Shuffle")
     while True:
         try:
             choice = int(input("Choose a shuffling method: "))
@@ -17,6 +18,10 @@ def shuffling_choice():
                 return deck.cards
 
             elif choice == 2:
+                deck.riffle()
+                return deck.cards
+
+            elif choice == 3:
                 slow_print("Under Maintenance.")
 
             else:
@@ -47,6 +52,9 @@ class Shuffling:
             shuffled.extend(right[len(left):])
             self.cards[:] = shuffled
         return self.cards
+
+    def overhand(self):
+        pass
 
 class Deck:
     def __init__(self):
