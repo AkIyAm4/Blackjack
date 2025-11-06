@@ -35,8 +35,18 @@ class Shuffling:
         return self.cards
 
     def riffle(self):
-        
-        pass
+        for _ in range(7):
+            cut = random.randint(23, 29)
+            left = self.cards[:cut]
+            right = self.cards[cut:]
+            shuffled = []
+            for a, b in zip(left, right):
+                shuffled.append(a)
+                shuffled.append(b)
+            shuffled.extend(left[len(right):])
+            shuffled.extend(right[len(left):])
+            self.cards[:] = shuffled
+        return self.cards
 
 class Deck:
     def __init__(self):
